@@ -3,7 +3,6 @@ package com.avhenrique.payment_processor.service;
 import com.avhenrique.payment_processor.dto.PaymentRequestDTO;
 import com.avhenrique.payment_processor.dto.PaymentResponseDTO;
 import com.avhenrique.payment_processor.entity.Payment;
-import com.avhenrique.payment_processor.kafka.PaymentProducer;
 import com.avhenrique.payment_processor.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,6 @@ import java.util.Optional;
 public class PaymentService {
 
     private final PaymentRepository paymentRepository;
-    private final PaymentProducer paymentProducer;
 
     public PaymentResponseDTO createPayment(PaymentRequestDTO request) {
         Payment payment = new Payment();
@@ -25,7 +23,6 @@ public class PaymentService {
         payment.setPayeeEmail(request.getPayeeEmail());
 
         Payment savedPayment = paymentRepository.save(payment);
-        paymentProducer.sendPaymentCreatedEvent(savedPayment);
 
         return mapToDTO(savedPayment);
     }
@@ -48,7 +45,6 @@ public class PaymentService {
 
         payment.setStatus(status);
         Payment updatedPayment = paymentRepository.save(payment);
-        paymentProducer.sendPaymentStatusUpdatedEvent(updatedPayment);
 
         return mapToDTO(updatedPayment);
     }

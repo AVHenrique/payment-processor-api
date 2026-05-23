@@ -2,7 +2,7 @@
 
 Uma API REST para processamento de pagamentos desenvolvida com Java, Spring Boot e PostgreSQL. O projeto demonstra boas práticas de desenvolvimento backend, arquitetura em camadas e integração com bancos de dados.
 
-## 🚀 Stack Tecnológico
+## 🚀 Stack
 
 - **Java 21** - Linguagem de programação
 - **Spring Boot 3.5.14** - Framework web
@@ -98,16 +98,6 @@ curl -X GET http://localhost:8080/api/payments/external/PAY-001
 ```bash
 curl -X PUT http://localhost:8080/api/payments/1/status?status=COMPLETED
 ```
-
-## 📁 Estrutura do Projeto
-
-src/main/java/com/avhenrique/payment_processor/
-├── controller/       # Endpoints REST
-├── service/          # Lógica de negócio
-├── repository/       # Acesso ao banco de dados
-├── entity/           # Modelos JPA
-├── dto/              # Data Transfer Objects
-└── PaymentProcessorApplication.java
 
 ## 🗄️ Banco de Dados
 
